@@ -9,7 +9,7 @@ import java.rmi.registry.Registry;
 /* Component under monitoring */
 public class Sender {
 
-    private final int HEARTBEAT_INTERVAL = 2000;
+    private final int HEARTBEAT_INTERVAL = 2500;
     private Registry registry;
     private ReceiverInterface receiver_stub;
 
@@ -25,10 +25,8 @@ public class Sender {
     public void sendHeartBeat() throws IOException{
 
         while(true){
-            /* waits for 2 seconds before sending another message */
             try {
-                /* message sent as heartbeat signal to monitoring module */
-                System.out.println("Sender: I am alive.");
+                System.out.println("Sender: I am Alive.");
                 Thread.sleep(HEARTBEAT_INTERVAL);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -40,8 +38,7 @@ public class Sender {
         Sender sender = new Sender();
         try{
             sender.initialize();
-
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             sender.sendHeartBeat();
 
         }catch(NotBoundException | IOException | InterruptedException ex){

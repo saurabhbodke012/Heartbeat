@@ -24,7 +24,7 @@ public class Main {
                     helper + File.separator + "out"+ File.separator +"production" + File.separator +"Heartbeat" + File.separator ,
                     "HeartbeatMonitor.Receiver");
             receiver_builder.redirectOutput(ProcessBuilder.Redirect.INHERIT);
-            Process vehicleControlModule = receiver_builder.start();
+            Process heartbeatMonitor = receiver_builder.start();
 
             Thread.sleep(1000);
 
@@ -37,16 +37,16 @@ public class Main {
             Process senderModule = sender_builder.start();
 
             // Prints error if any, while initializing the receiver module
-            InputStream error_receiver = vehicleControlModule.getErrorStream();
+            InputStream error_receiver = heartbeatMonitor.getErrorStream();
             StringBuilder receiverError = new StringBuilder();
             receiverError.append("Receiver : ");
-            if(vehicleControlModule.getErrorStream().read() != -1){
+            if(heartbeatMonitor.getErrorStream().read() != -1){
                 for (int i = 0; i < error_receiver.available(); i++) {
                     receiverError.append((char)error_receiver.read());
                 }
                 System.out.println(receiverError.toString());
             }else{
-                System.out.println(vehicleControlModule.getOutputStream());
+                System.out.println(heartbeatMonitor.getOutputStream());
             }
 
             // Prints error if any, while initializing the sender module

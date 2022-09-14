@@ -12,8 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Receiver extends UnicastRemoteObject implements ReceiverInterface{
 
-
-    private static final int INTERVAL = 4000;
+    private static final int INTERVAL = 5000;
     private static final String HOST = "localhost";
     private static long lastHeartbeatTime;
 
@@ -24,7 +23,6 @@ public class Receiver extends UnicastRemoteObject implements ReceiverInterface{
        Registry registry;
         try{
             Receiver receiver = new Receiver();
-
             registry = LocateRegistry.getRegistry(HOST);
             registry.rebind("Receiver", receiver);
 
@@ -43,7 +41,7 @@ public class Receiver extends UnicastRemoteObject implements ReceiverInterface{
                 System.out.println(e.getMessage());
             }
             if (!isAlive()) {
-                System.out.println("Hearbeat wait time exceeded - Sender Component failed - Check logs for details");
+                System.out.println("HearBeat wait time exceeded - Sender Component failed - Check logs for details");
                 FaultMonitor.handleFault("Sender");
             }
         }
@@ -52,7 +50,7 @@ public class Receiver extends UnicastRemoteObject implements ReceiverInterface{
     /* Checks if the sender is alive*/
     private boolean isAlive(){
         long interval = System.currentTimeMillis() - lastHeartbeatTime;
-        int error = 100; //100ms error tolerable
+        int error = 500; //500ms error tolerable
         return (INTERVAL + error) >= interval;
     }
 
@@ -68,7 +66,7 @@ public class Receiver extends UnicastRemoteObject implements ReceiverInterface{
         try{
             receiver.monitorSenderModule();
         }catch(Exception ex){
-            System.out.println("Vehicle control - Monitoring module exception  - " + ex.getMessage());
+            System.out.println("HearBeat Monitor: Module exception  - " + ex.getMessage());
         }
     }
 }
