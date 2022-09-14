@@ -1,17 +1,16 @@
-package RemoteStarter;
+package ProcessBuilder;
 
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class Starter {
+public class Main {
 
     public static void main(String [] args){
         File currentDirFile = new File(".");
         String helper = currentDirFile.getAbsolutePath();
         
         try {
-
             // Initializes the process
             ProcessBuilder pb = new ProcessBuilder("rmiregistry");
             pb.directory(new File("." + File.separator +"out" + File.separator +"production"+ File.separator +"Heartbeat"));

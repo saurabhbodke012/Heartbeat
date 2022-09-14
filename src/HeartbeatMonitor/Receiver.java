@@ -16,14 +16,10 @@ public class Receiver extends UnicastRemoteObject implements ReceiverInterface{
     private static final int INTERVAL = 4000;
     private static final String HOST = "localhost";
     private static long lastHeartbeatTime;
-    private static int currentlocation;
 
     protected Receiver() throws RemoteException {
     }
 
-    /*
-    Initializes the Receiver
-     */
     public void initializeReceiver(){
        Registry registry;
         try{
