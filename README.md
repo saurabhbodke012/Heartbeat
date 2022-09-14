@@ -1,20 +1,39 @@
-# Heartbeat
+# Fault Detection: Heartbeat tactic
 
-Objectives:
+## What is Heartbeat tactic?
+- To allow processes to monitor availability of a critical component.
+- The HeartbeatSender sends a heartbeat message periodically.
+- The HeartbeatReceiver receives the heartbeat, updates the last received time of a heartbeat message is updated.
 
-You are supposed to implement the “Heartbeat” Tactic for improving the availability of a self-driving (autonomous) car. The implementation is minimum prototyping of the tactic than full implementation of a self-driving car.
+## Objective:
+Implement the “Heartbeat” Tactic for improving the availability of a self-driving (autonomous) car. The implementation is minimum prototyping of the tactic than full implementation of a self-driving car.
 
-Please consider the following items:
-1.	Develop a critical process ( with minimum functionality)
-2.	Design a Non-deterministic failure in this process which makes it crash.
-3.	Implement Heartbeat to monitor the process
-4.	Your heartbeat implementation should have all the required fault detection features.
+### The implementation has following criteria/Main Features:
+- Develop a critical process (with minimum functionality)
+- Design a Non-deterministic failure in this process which makes it crash.
+- Implement Heartbeat to monitor the process
+- Your heartbeat implementation should have all the required fault detection features.
 
-Rule 1: Do not embed a failure in a static if statement. The failure must be random and it must cause the process crash, avoid making the process sleep.
+### Cases to follow:
+- Rule 1: Do not embed a failure in a static if statement. The failure must be random and it must cause the process crash, avoid making the process sleep.
+- Rule 2: Implement send/receive/monitoring functions on different processes 
+- Rule 3: Select a relevant domain: Monitoring connections, Monitoring process, … 
+- Rule 4: Use inter-process communication mechanisms and remote method invocations; solutions based on networking protocols (e.g. UPD etc.) are not considered for this assignment.
 
-Rule 2: Implement send/receive/monitoring functions on different processes 
+## Modules
+- Faulthandler: Handling the error in log file
+- HeartbeatMonitor: Analyses the heartbeat messages of the sender and send exception to Faulthandler
+  - Receiver
+  - ReceiverInterface
+- logger: To log the error in file
+- Sender: Send the hearbeat(ping) to server
+- Main: intialise the processes for receiver and sender
 
-Rule 3: Select a relevant domain: Monitoring connections, Monitoring process, … 
+### Requirements
+* Java version 8 or higher.
 
-Rule 4: Use inter-process communication mechanisms and remote method invocations; solutions based on networking protocols (e.g. UPD etc.) are not considered for this assignment.
-
+### Setup and run project
+1. **Fork** the repository to save in your account.
+2. Download the repository or clone in your local machine.
+        git clone https://github.com/saurabhbodke012/Heartbeat.git
+3. Run the following file either in IDE(IntelIJ) or from commandline: ProcessBuilder/Main.java
