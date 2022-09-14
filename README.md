@@ -33,7 +33,4 @@ Implement the “Heartbeat” Tactic for improving the availability of a self-dr
 * Java version 8 or higher.
 
 ### Setup and run project
-1. **Fork** the repository to save in your account.
-2. Download the repository or clone in your local machine.
-        git clone https://github.com/saurabhbodke012/Heartbeat.git
-3. Run the following file either in IDE(IntelIJ) or from commandline: ProcessBuilder/Main.java
+- Run the following file either in IDE(IntelIJ) or from commandline: ProcessBuilder/Main.java
